@@ -20,29 +20,30 @@ class FirstHomeViewController: UIViewController, UITableViewDelegate, UITableVie
         button.tintColor = .black
         button.frame = CGRect(x: 310, y: 75, width: 50, height: 50)
         button.addTarget(self, action: #selector(gearButtonPressed), for: .touchUpInside)
+        //button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
-    let label: UILabel = {
-       let label = UILabel()
-        label.text = "See more"
-        label.textColor = .orange
-        label.frame = CGRect(x: 280, y: 105, width: 120, height: 50)
-        return label
+    let moreButton: UIButton = {
+       let button = UIButton()
+        button.setTitle("See more", for: .normal)
+        button.tintColor = .orange
+        button.frame = CGRect(x: 280, y: 105, width: 120, height: 50)
+        return button
     }()
     
-//    let mainLabel: UILabel = {
-//       let label = UILabel()
-//        label.text = "Portfolio"
-//        label.font = .systemFont(ofSize: 35)
-//        label.frame = CGRect(x: 10, y: 90, width: 160, height: 50)
-//        return label
-//    }()
+    let mainLabel: UILabel = {
+       let label = UILabel()
+        label.text = "Portfolio"
+        label.font = .systemFont(ofSize: 35)
+        label.frame = CGRect(x: 10, y: 90, width: 160, height: 50)
+        return label
+    }()
     
     override func viewDidLoad() {
         view.backgroundColor = .white
         
-        tableView.frame = view.bounds
+        tableView.frame = CGRect(x: 0, y: 150, width: view.bounds.size.width, height: 1000)
         title = "Portfolio"
         navigationController?.navigationBar.prefersLargeTitles = true
         
@@ -53,9 +54,8 @@ class FirstHomeViewController: UIViewController, UITableViewDelegate, UITableVie
         
         view.addSubview(tableView)
         view.addSubview(gearButton)
-        view.addSubview(label)
-        
-        //view.addSubview(mainLabel)
+        view.addSubview(moreButton)
+        view.addSubview(mainLabel)
     }
     
     @objc func gearButtonPressed() {
@@ -75,6 +75,11 @@ class FirstHomeViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        print("First TableView cell tapped")
     }
     
     func createProductArray() {

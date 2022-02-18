@@ -63,7 +63,7 @@ class SecondHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     }()
     
     override func viewDidLoad() {
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(named: "lightWhiteGray")
         
         tableView.frame = CGRect(x: 0, y: 230, width: view.frame.width, height: 1500)
         tableView.register(SecondProductCell.self, forCellReuseIdentifier: cellId)
@@ -87,6 +87,7 @@ class SecondHomeViewController: UIViewController, UITableViewDelegate, UITableVi
         setUpConstraints()
     }
     
+    
     @objc func leftArrowTapped() {
         print("Left arrow Tapped!!!")
     }
@@ -106,8 +107,13 @@ class SecondHomeViewController: UIViewController, UITableViewDelegate, UITableVi
         return cell!
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        print("Second TableView cell tapped")
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
+        return 70
     }
     
     func setUpConstraints() {
@@ -127,11 +133,14 @@ class SecondHomeViewController: UIViewController, UITableViewDelegate, UITableVi
         rightArrowButton.topAnchor.constraint(equalTo: moneyLabel.bottomAnchor, constant: 32).isActive = true
     }
     
+    
     func createProductArray() {
-        products.append(SecondProduct(productName: "Home", productImage: UIImage(named: "crane")!, price: "$321", description: "Shoppings"))
-        products.append(SecondProduct(productName: "Shoppings", productImage: UIImage(named: "giraffe")!, price: "$574", description: "Clothes"))
+        products.append(SecondProduct(productName: "Home", productImage: UIImage(named: "crane")!, price: "$321", description: "Products"))
+        products.append(SecondProduct(productName: "Purchases", productImage: UIImage(named: "giraffe")!, price: "$574", description: "Clothes"))
         products.append(SecondProduct(productName: "Transport", productImage: UIImage(named: "seal")!, price: "$124", description: "Taxi"))
-        products.append(SecondProduct(productName: "Health", productImage: UIImage(named: "seal")!, price: "$765", description: "Healthcare"))
-        products.append(SecondProduct(productName: "Fitness", productImage: UIImage(named: "crane")!, price: "$324", description: "Trainings"))
+        products.append(SecondProduct(productName: "Health", productImage: UIImage(named: "bat")!, price: "$765", description: "Treatment"))
+        products.append(SecondProduct(productName: "Fitness", productImage: UIImage(named: "butterfly")!, price: "$324", description: "Trainings"))
+        products.append(SecondProduct(productName: "Bills", productImage: UIImage(named: "dolphin")!, price: "$847", description: "Utillities"))
+        products.append(SecondProduct(productName: "Restraunt", productImage: UIImage(named: "rabbit")!, price: "$372", description: "Dinner"))
     }
 }

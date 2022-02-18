@@ -23,6 +23,7 @@ class SecondProductCell: UITableViewCell {
         lbl.font = .systemFont(ofSize: 20)
         lbl.frame = CGRect(x: 70, y: 0, width: 120, height: 50)
         lbl.textAlignment = .left
+        lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
     }()
  
@@ -34,6 +35,7 @@ class SecondProductCell: UITableViewCell {
         lbl.frame = CGRect(x: 320, y: 10, width: 90, height: 50)
         lbl.textAlignment = .left
         lbl.numberOfLines = 0
+        lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
     }()
     
@@ -42,6 +44,7 @@ class SecondProductCell: UITableViewCell {
         imgView.contentMode = .scaleAspectFit
         imgView.frame = CGRect(x: 10, y: 5, width: 50, height: 50)
         imgView.clipsToBounds = true
+        imgView.translatesAutoresizingMaskIntoConstraints = false
         return imgView
     }()
     
@@ -51,6 +54,7 @@ class SecondProductCell: UITableViewCell {
         lbl.frame = CGRect(x: 350, y: -10, width: 90, height: 50)
         lbl.font = .boldSystemFont(ofSize: 16)
         lbl.textAlignment = .left
+        lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
     }()
     
@@ -60,8 +64,21 @@ class SecondProductCell: UITableViewCell {
         addSubview(productImage)
         addSubview(productDescription)
         addSubview(productPriceLabel)
+        
+        productImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5).isActive = true
+        productImage.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        productImage.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        productImage.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
+        productNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 20).isActive = true
+        productNameLabel.leadingAnchor.constraint(equalTo: productImage.trailingAnchor, constant: 10).isActive = true
+        
+        productPriceLabel.topAnchor.constraint(equalTo: topAnchor, constant: 15).isActive = true
+        productPriceLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20).isActive = true
+        
+        productDescription.topAnchor.constraint(equalTo: productPriceLabel.bottomAnchor).isActive = true
+        productDescription.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20).isActive = true
     }
-    
     required init?(coder: NSCoder) {
             fatalError("init(coder:) has not been implemented")
     }

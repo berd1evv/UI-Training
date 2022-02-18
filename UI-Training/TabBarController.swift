@@ -23,6 +23,7 @@ class TabBarController: UITabBarController {
     func createTabBarItem(tabBarTitle: String, tabBarImage: String, viewController: UIViewController) -> UINavigationController {
         let navCont = UINavigationController(rootViewController: viewController)
         navCont.tabBarItem.title = tabBarTitle
+        navCont.isNavigationBarHidden = true
         navCont.tabBarItem.image = UIImage(systemName: tabBarImage)
         return navCont
     }
