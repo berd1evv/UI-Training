@@ -24,6 +24,7 @@ class FirstProductCell : UITableViewCell {
         lbl.textColor = .black
         lbl.font = .boldSystemFont(ofSize: 20)
         lbl.textAlignment = .left
+        lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
     }()
  
@@ -31,9 +32,10 @@ class FirstProductCell : UITableViewCell {
     private let productDescriptionLabel : UILabel = {
         let lbl = UILabel()
         lbl.textColor = .gray
-        lbl.font = .systemFont(ofSize: 16)
+        lbl.font = .systemFont(ofSize: 12)
         lbl.textAlignment = .left
         lbl.numberOfLines = 0
+        lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
     }()
     
@@ -42,6 +44,7 @@ class FirstProductCell : UITableViewCell {
         lbl.textColor = .black
         lbl.font = .boldSystemFont(ofSize: 16)
         lbl.textAlignment = .left
+        lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
     }()
     
@@ -51,6 +54,7 @@ class FirstProductCell : UITableViewCell {
         lbl.font = .systemFont(ofSize: 14)
         lbl.textAlignment = .left
         lbl.numberOfLines = 0
+        lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
     }()
  
@@ -59,6 +63,7 @@ class FirstProductCell : UITableViewCell {
         let imgView = UIImageView(image: UIImage(named: "bch"))
         imgView.contentMode = .scaleAspectFit
         imgView.clipsToBounds = true
+        imgView.translatesAutoresizingMaskIntoConstraints = false
         return imgView
     }()
  
@@ -70,16 +75,27 @@ class FirstProductCell : UITableViewCell {
         addSubview(productDescriptionLabel)
         addSubview(productDollarsDescription)
         addSubview(productToDollarsLabel)
- 
-        productImage.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: nil, paddingTop: 5, paddingLeft: 5, paddingBottom: 5, paddingRight: 0, width: 90, height: 0, enableInsets: false)
         
-        productNameLabel.anchor(top: topAnchor, left: productImage.rightAnchor, bottom: nil, right: nil, paddingTop: 20, paddingLeft: 5, paddingBottom: 0, paddingRight: 0, width: frame.size.width / 2, height: 0, enableInsets: false)
+        NSLayoutConstraint.activate([
+            productImage.centerYAnchor.constraint(equalTo: centerYAnchor),
+            productImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+            productImage.heightAnchor.constraint(equalToConstant: 70),
+            productImage.widthAnchor.constraint(equalToConstant: 70),
+            
+            productNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10),
+            productNameLabel.leadingAnchor.constraint(equalTo: productImage.trailingAnchor, constant: 15),
+            
+            productToDollarsLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10),
+            productToDollarsLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
+            
+            productDollarsDescription.topAnchor.constraint(equalTo: topAnchor, constant: 30),
+            productDollarsDescription.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
+            
+            productDescriptionLabel.topAnchor.constraint(equalTo: productNameLabel.bottomAnchor, constant: 5),
+            productDescriptionLabel.leadingAnchor.constraint(equalTo: productImage.trailingAnchor, constant: 17)
+        ])
         
-        productDescriptionLabel.anchor(top: productNameLabel.bottomAnchor, left: productImage.rightAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 10, paddingBottom: 0, paddingRight: 0, width: frame.size.width / 2, height: 0, enableInsets: false)
-        productToDollarsLabel.anchor(top: topAnchor, left: nil, bottom: nil, right: rightAnchor, paddingTop: 20, paddingLeft: 30, paddingBottom: 0, paddingRight: 5, width: 120, height: 0, enableInsets: false)
-        productDollarsDescription.anchor(top: productToDollarsLabel.bottomAnchor, left: nil, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 20, paddingBottom: 0, paddingRight: 5, width: 120, height: 0, enableInsets: false)
- 
-
+        
     }
  
     required init?(coder aDecoder: NSCoder) {

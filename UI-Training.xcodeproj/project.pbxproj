@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		A9237A7127BEEA4700F4D4EA /* SecondHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9237A7027BEEA4700F4D4EA /* SecondHomeViewController.swift */; };
 		A965E50227B2BC3200A0E948 /* FirstProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = A965E50127B2BC3200A0E948 /* FirstProduct.swift */; };
-		A965E50427B2CE3500A0E948 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A965E50327B2CE3500A0E948 /* Extension.swift */; };
 		A965E50627B2CF7C00A0E948 /* FirstProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A965E50527B2CF7C00A0E948 /* FirstProductCell.swift */; };
 		A9EE9A2127BF59D6009E440A /* SecondProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EE9A2027BF59D6009E440A /* SecondProduct.swift */; };
 		A9EE9A2327BF59E6009E440A /* SecondProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EE9A2227BF59E6009E440A /* SecondProductCell.swift */; };
@@ -24,7 +23,6 @@
 /* Begin PBXFileReference section */
 		A9237A7027BEEA4700F4D4EA /* SecondHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondHomeViewController.swift; sourceTree = "<group>"; };
 		A965E50127B2BC3200A0E948 /* FirstProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstProduct.swift; sourceTree = "<group>"; };
-		A965E50327B2CE3500A0E948 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		A965E50527B2CF7C00A0E948 /* FirstProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstProductCell.swift; sourceTree = "<group>"; };
 		A9EE9A2027BF59D6009E440A /* SecondProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondProduct.swift; sourceTree = "<group>"; };
 		A9EE9A2227BF59E6009E440A /* SecondProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondProductCell.swift; sourceTree = "<group>"; };
@@ -93,7 +91,6 @@
 				A9FAC20527B2AE58002AB2D3 /* TabBarController.swift */,
 				A9EE9A2427BF59F2009E440A /* FirstVC */,
 				A9EE9A2527BF5A0B009E440A /* SecondVC */,
-				A965E50327B2CE3500A0E948 /* Extension.swift */,
 				A9FAC20A27B2AE59002AB2D3 /* Assets.xcassets */,
 				A9FAC20C27B2AE59002AB2D3 /* LaunchScreen.storyboard */,
 				A9FAC20F27B2AE59002AB2D3 /* Info.plist */,
@@ -176,7 +173,6 @@
 				A9FAC20627B2AE58002AB2D3 /* TabBarController.swift in Sources */,
 				A9FAC20227B2AE58002AB2D3 /* AppDelegate.swift in Sources */,
 				A965E50227B2BC3200A0E948 /* FirstProduct.swift in Sources */,
-				A965E50427B2CE3500A0E948 /* Extension.swift in Sources */,
 				A9FAC20427B2AE58002AB2D3 /* SceneDelegate.swift in Sources */,
 				A9237A7127BEEA4700F4D4EA /* SecondHomeViewController.swift in Sources */,
 				A965E50627B2CF7C00A0E948 /* FirstProductCell.swift in Sources */,

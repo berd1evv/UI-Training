@@ -18,17 +18,17 @@ class FirstHomeViewController: UIViewController, UITableViewDelegate, UITableVie
         let button = UIButton()
         button.setImage(UIImage(systemName: "gearshape"), for: .normal)
         button.tintColor = .black
-        button.frame = CGRect(x: 310, y: 75, width: 50, height: 50)
         button.addTarget(self, action: #selector(gearButtonPressed), for: .touchUpInside)
-        //button.translatesAutoresizingMaskIntoConstraints = false
+        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
     let moreButton: UIButton = {
        let button = UIButton()
         button.setTitle("See more", for: .normal)
-        button.tintColor = .orange
-        button.frame = CGRect(x: 280, y: 105, width: 120, height: 50)
+        button.setTitleColor(.orange, for: .normal)
+        button.addTarget(self, action: #selector(seeMoreButtonPressed), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
@@ -42,13 +42,12 @@ class FirstHomeViewController: UIViewController, UITableViewDelegate, UITableVie
     
     override func viewDidLoad() {
         view.backgroundColor = .white
-        
-        tableView.frame = CGRect(x: 0, y: 150, width: view.bounds.size.width, height: 1000)
         title = "Portfolio"
         navigationController?.navigationBar.prefersLargeTitles = true
         
         createProductArray()
         tableView.register(FirstProductCell.self, forCellReuseIdentifier: cellId)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -56,10 +55,16 @@ class FirstHomeViewController: UIViewController, UITableViewDelegate, UITableVie
         view.addSubview(gearButton)
         view.addSubview(moreButton)
         view.addSubview(mainLabel)
+        
+        setUpConstraints()
     }
     
     @objc func gearButtonPressed() {
         print("Gear button pressed")
+    }
+    
+    @objc func seeMoreButtonPressed() {
+        print("See more button pressed")
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -95,6 +100,32 @@ class FirstHomeViewController: UIViewController, UITableViewDelegate, UITableVie
         products.append(FirstProduct(productName: "Bitcoins", productImage: UIImage(named: "bch")!, percentage: "+1,6%", dollars: "$29,850.15" , description: "2,73 BTC"))
         products.append(FirstProduct(productName: "Etherium", productImage: UIImage(named: "eth")!, percentage: "-0,82%", dollars: "$10,561,24", description: "47.61 ETH"))
         products.append(FirstProduct(productName: "Doge Coin", productImage: UIImage(named: "doge")!, percentage: "+0,27%", dollars: "$3,672", description: "231.46 DOGE"))
+        products.append(FirstProduct(productName: "Bitcoins", productImage: UIImage(named: "bch")!, percentage: "+1,6%", dollars: "$29,850.15" , description: "2,73 BTC"))
+        products.append(FirstProduct(productName: "Etherium", productImage: UIImage(named: "eth")!, percentage: "-0,82%", dollars: "$10,561,24", description: "47.61 ETH"))
+        products.append(FirstProduct(productName: "Doge Coin", productImage: UIImage(named: "doge")!, percentage: "+0,27%", dollars: "$3,672", description: "231.46 DOGE"))
+        products.append(FirstProduct(productName: "Bitcoins", productImage: UIImage(named: "bch")!, percentage: "+1,6%", dollars: "$29,850.15" , description: "2,73 BTC"))
+        products.append(FirstProduct(productName: "Etherium", productImage: UIImage(named: "eth")!, percentage: "-0,82%", dollars: "$10,561,24", description: "47.61 ETH"))
+        products.append(FirstProduct(productName: "Doge Coin", productImage: UIImage(named: "doge")!, percentage: "+0,27%", dollars: "$3,672", description: "231.46 DOGE"))
+        products.append(FirstProduct(productName: "Bitcoins", productImage: UIImage(named: "bch")!, percentage: "+1,6%", dollars: "$29,850.15" , description: "2,73 BTC"))
+        products.append(FirstProduct(productName: "Etherium", productImage: UIImage(named: "eth")!, percentage: "-0,82%", dollars: "$10,561,24", description: "47.61 ETH"))
+        products.append(FirstProduct(productName: "Doge Coin", productImage: UIImage(named: "doge")!, percentage: "+0,27%", dollars: "$3,672", description: "231.46 DOGE"))
+        products.append(FirstProduct(productName: "Bitcoins", productImage: UIImage(named: "bch")!, percentage: "+1,6%", dollars: "$29,850.15" , description: "2,73 BTC"))
+        products.append(FirstProduct(productName: "Etherium", productImage: UIImage(named: "eth")!, percentage: "-0,82%", dollars: "$10,561,24", description: "47.61 ETH"))
+        products.append(FirstProduct(productName: "Doge Coin", productImage: UIImage(named: "doge")!, percentage: "+0,27%", dollars: "$3,672", description: "231.46 DOGE"))
+    }
+    
+    func setUpConstraints() {
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 150),
+            tableView.widthAnchor.constraint(equalToConstant: view.bounds.size.width),
+            tableView.heightAnchor.constraint(equalToConstant: view.bounds.height - 150),
+            
+            gearButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 90),
+            gearButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -60),
+            
+            moreButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 120),
+            moreButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30)
+        ])
     }
         
 }

@@ -65,19 +65,21 @@ class SecondProductCell: UITableViewCell {
         addSubview(productDescription)
         addSubview(productPriceLabel)
         
-        productImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5).isActive = true
-        productImage.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        productImage.widthAnchor.constraint(equalToConstant: 50).isActive = true
-        productImage.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        
-        productNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 20).isActive = true
-        productNameLabel.leadingAnchor.constraint(equalTo: productImage.trailingAnchor, constant: 10).isActive = true
-        
-        productPriceLabel.topAnchor.constraint(equalTo: topAnchor, constant: 15).isActive = true
-        productPriceLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20).isActive = true
-        
-        productDescription.topAnchor.constraint(equalTo: productPriceLabel.bottomAnchor).isActive = true
-        productDescription.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20).isActive = true
+        NSLayoutConstraint.activate([
+            productImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5),
+            productImage.centerYAnchor.constraint(equalTo: centerYAnchor),
+            productImage.widthAnchor.constraint(equalToConstant: 50),
+            productImage.heightAnchor.constraint(equalToConstant: 50),
+            
+            productNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 20),
+            productNameLabel.leadingAnchor.constraint(equalTo: productImage.trailingAnchor, constant: 10),
+            
+            productPriceLabel.topAnchor.constraint(equalTo: topAnchor, constant: 15),
+            productPriceLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            
+            productDescription.topAnchor.constraint(equalTo: productPriceLabel.bottomAnchor),
+            productDescription.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)
+        ])
     }
     required init?(coder: NSCoder) {
             fatalError("init(coder:) has not been implemented")

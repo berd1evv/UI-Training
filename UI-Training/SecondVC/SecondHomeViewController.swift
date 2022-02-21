@@ -14,10 +14,10 @@ class SecondHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     let tableView = UITableView()
     var products : [SecondProduct] = [SecondProduct]()
     
+// MARK: Components
     
     let balanceLabel: UILabel = {
         let label = UILabel()
-        label.frame = CGRect(x: 160, y: 60, width: 100, height: 30)
         label.font = .systemFont(ofSize: 19)
         label.text = "Balance"
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -26,7 +26,6 @@ class SecondHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     
     let moneyLabel: UILabel = {
         let label = UILabel()
-        label.frame = CGRect(x: 110, y: 110, width: 160, height: 30)
         label.font = .boldSystemFont(ofSize: 37)
         label.text = "$1200.89"
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -35,7 +34,6 @@ class SecondHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     
     let monthLabel: UILabel = {
         let label = UILabel()
-        label.frame = CGRect(x: 140, y: 160, width: 160, height: 30)
         label.font = .systemFont(ofSize: 20)
         label.text = "April 2020"
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -44,7 +42,6 @@ class SecondHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     
     let leftArrowButton: UIButton = {
         let lbutton = UIButton()
-        lbutton.frame = CGRect(x: 80, y: 170, width: 15, height: 15)
         lbutton.setImage(UIImage(systemName: "chevron.left"), for: .normal)
         lbutton.tintColor = .black
         lbutton.translatesAutoresizingMaskIntoConstraints = false
@@ -62,11 +59,20 @@ class SecondHomeViewController: UIViewController, UITableViewDelegate, UITableVi
         return rbutton
     }()
     
+    let seeMoreButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("See More", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(seeMoreButtonTapped), for: .touchUpInside)
+        return button
+    }()
+    
     override func viewDidLoad() {
         view.backgroundColor = UIColor(named: "lightWhiteGray")
         
-        tableView.frame = CGRect(x: 0, y: 230, width: view.frame.width, height: 1500)
         tableView.register(SecondProductCell.self, forCellReuseIdentifier: cellId)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.clipsToBounds = true
         tableView.layer.cornerRadius = 30
         
@@ -83,8 +89,13 @@ class SecondHomeViewController: UIViewController, UITableViewDelegate, UITableVi
         view.addSubview(monthLabel)
         view.addSubview(leftArrowButton)
         view.addSubview(rightArrowButton)
+        view.addSubview(seeMoreButton)
         
         setUpConstraints()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        tableView.heightAnchor.constraint(equalToConstant: tableView.contentSize.height).isActive = true
     }
     
     
@@ -94,6 +105,10 @@ class SecondHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @objc func rightArrowTapped() {
         print("Right arrow Tapped!!!")
+    }
+    
+    @objc func seeMoreButtonTapped() {
+        print("See more button Tapped!!!")
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -116,21 +131,32 @@ class SecondHomeViewController: UIViewController, UITableViewDelegate, UITableVi
         return 70
     }
     
+    
     func setUpConstraints() {
-        balanceLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        balanceLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 60).isActive = true
-        
-        moneyLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        moneyLabel.topAnchor.constraint(equalTo: balanceLabel.bottomAnchor, constant: 15).isActive = true
-        
-        monthLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        monthLabel.topAnchor.constraint(equalTo: moneyLabel.bottomAnchor, constant: 30).isActive = true
-        
-        leftArrowButton.trailingAnchor.constraint(equalTo: monthLabel.leadingAnchor, constant: -60).isActive = true
-        leftArrowButton.topAnchor.constraint(equalTo: moneyLabel.bottomAnchor, constant: 32).isActive = true
-        
-        rightArrowButton.leadingAnchor.constraint(equalTo: monthLabel.trailingAnchor, constant: 60).isActive = true
-        rightArrowButton.topAnchor.constraint(equalTo: moneyLabel.bottomAnchor, constant: 32).isActive = true
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: monthLabel.topAnchor, constant: 50),
+            tableView.widthAnchor.constraint(equalToConstant: view.bounds.size.width),
+            //tableView.heightAnchor.constraint(equalToConstant: view.bounds.height),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            balanceLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            balanceLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 60),
+            
+            moneyLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            moneyLabel.topAnchor.constraint(equalTo: balanceLabel.bottomAnchor, constant: 15),
+            
+            monthLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            monthLabel.topAnchor.constraint(equalTo: moneyLabel.bottomAnchor, constant: 30),
+            
+            leftArrowButton.trailingAnchor.constraint(equalTo: monthLabel.leadingAnchor, constant: -60),
+            leftArrowButton.topAnchor.constraint(equalTo: moneyLabel.bottomAnchor, constant: 32),
+            
+            rightArrowButton.leadingAnchor.constraint(equalTo: monthLabel.trailingAnchor, constant: 60),
+            rightArrowButton.topAnchor.constraint(equalTo: moneyLabel.bottomAnchor, constant: 32),
+            
+            seeMoreButton.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: -93),
+            seeMoreButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+        ])
     }
     
     
@@ -142,5 +168,13 @@ class SecondHomeViewController: UIViewController, UITableViewDelegate, UITableVi
         products.append(SecondProduct(productName: "Fitness", productImage: UIImage(named: "butterfly")!, price: "$324", description: "Trainings"))
         products.append(SecondProduct(productName: "Bills", productImage: UIImage(named: "dolphin")!, price: "$847", description: "Utillities"))
         products.append(SecondProduct(productName: "Restraunt", productImage: UIImage(named: "rabbit")!, price: "$372", description: "Dinner"))
+        products.append(SecondProduct(productName: "Home", productImage: UIImage(named: "crane")!, price: "$321", description: "Products"))
+        products.append(SecondProduct(productName: "Purchases", productImage: UIImage(named: "giraffe")!, price: "$574", description: "Clothes"))
+        products.append(SecondProduct(productName: "Transport", productImage: UIImage(named: "seal")!, price: "$124", description: "Taxi"))
+        products.append(SecondProduct(productName: "Health", productImage: UIImage(named: "bat")!, price: "$765", description: "Treatment"))
+        products.append(SecondProduct(productName: "Fitness", productImage: UIImage(named: "butterfly")!, price: "$324", description: "Trainings"))
+        products.append(SecondProduct(productName: "Bills", productImage: UIImage(named: "dolphin")!, price: "$847", description: "Utillities"))
+        products.append(SecondProduct(productName: "Restraunt", productImage: UIImage(named: "rabbit")!, price: "$372", description: "Dinner"))
     }
 }
+
