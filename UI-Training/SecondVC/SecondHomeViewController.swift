@@ -51,7 +51,6 @@ class SecondHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     
     let rightArrowButton: UIButton = {
         let rbutton = UIButton()
-        rbutton.frame = CGRect(x: 270, y: 170, width: 15, height: 15)
         rbutton.setImage(UIImage(systemName: "chevron.right"), for: .normal)
         rbutton.tintColor = .black
         rbutton.translatesAutoresizingMaskIntoConstraints = false
@@ -67,6 +66,7 @@ class SecondHomeViewController: UIViewController, UITableViewDelegate, UITableVi
         button.addTarget(self, action: #selector(seeMoreButtonTapped), for: .touchUpInside)
         return button
     }()
+                     
     
     override func viewDidLoad() {
         view.backgroundColor = UIColor(named: "lightWhiteGray")
@@ -89,7 +89,6 @@ class SecondHomeViewController: UIViewController, UITableViewDelegate, UITableVi
         view.addSubview(monthLabel)
         view.addSubview(leftArrowButton)
         view.addSubview(rightArrowButton)
-        view.addSubview(seeMoreButton)
         
         setUpConstraints()
     }
@@ -97,7 +96,6 @@ class SecondHomeViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidLayoutSubviews() {
         tableView.heightAnchor.constraint(equalToConstant: tableView.contentSize.height).isActive = true
     }
-    
     
     @objc func leftArrowTapped() {
         print("Left arrow Tapped!!!")
@@ -131,13 +129,27 @@ class SecondHomeViewController: UIViewController, UITableViewDelegate, UITableVi
         return 70
     }
     
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let footerView = UIView()
+        footerView.addSubview(seeMoreButton)
+
+        NSLayoutConstraint.activate([
+            footerView.widthAnchor.constraint(equalToConstant: view.frame.size.width),
+            seeMoreButton.centerXAnchor.constraint(equalTo: footerView.centerXAnchor),
+        ])
+        return footerView
+    }
+
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 100
+    }
+    
     
     func setUpConstraints() {
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: monthLabel.topAnchor, constant: 50),
+            tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 230),
             tableView.widthAnchor.constraint(equalToConstant: view.bounds.size.width),
-            //tableView.heightAnchor.constraint(equalToConstant: view.bounds.height),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 100),
             
             balanceLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             balanceLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 60),
@@ -153,21 +165,11 @@ class SecondHomeViewController: UIViewController, UITableViewDelegate, UITableVi
             
             rightArrowButton.leadingAnchor.constraint(equalTo: monthLabel.trailingAnchor, constant: 60),
             rightArrowButton.topAnchor.constraint(equalTo: moneyLabel.bottomAnchor, constant: 32),
-            
-            seeMoreButton.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: -93),
-            seeMoreButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
         ])
     }
     
     
     func createProductArray() {
-        products.append(SecondProduct(productName: "Home", productImage: UIImage(named: "crane")!, price: "$321", description: "Products"))
-        products.append(SecondProduct(productName: "Purchases", productImage: UIImage(named: "giraffe")!, price: "$574", description: "Clothes"))
-        products.append(SecondProduct(productName: "Transport", productImage: UIImage(named: "seal")!, price: "$124", description: "Taxi"))
-        products.append(SecondProduct(productName: "Health", productImage: UIImage(named: "bat")!, price: "$765", description: "Treatment"))
-        products.append(SecondProduct(productName: "Fitness", productImage: UIImage(named: "butterfly")!, price: "$324", description: "Trainings"))
-        products.append(SecondProduct(productName: "Bills", productImage: UIImage(named: "dolphin")!, price: "$847", description: "Utillities"))
-        products.append(SecondProduct(productName: "Restraunt", productImage: UIImage(named: "rabbit")!, price: "$372", description: "Dinner"))
         products.append(SecondProduct(productName: "Home", productImage: UIImage(named: "crane")!, price: "$321", description: "Products"))
         products.append(SecondProduct(productName: "Purchases", productImage: UIImage(named: "giraffe")!, price: "$574", description: "Clothes"))
         products.append(SecondProduct(productName: "Transport", productImage: UIImage(named: "seal")!, price: "$124", description: "Taxi"))

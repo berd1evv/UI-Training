@@ -36,7 +36,7 @@ class FirstHomeViewController: UIViewController, UITableViewDelegate, UITableVie
        let label = UILabel()
         label.text = "Portfolio"
         label.font = .systemFont(ofSize: 35)
-        label.frame = CGRect(x: 10, y: 90, width: 160, height: 50)
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -116,6 +116,9 @@ class FirstHomeViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func setUpConstraints() {
         NSLayoutConstraint.activate([
+            mainLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
+            mainLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5),
+            
             tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 150),
             tableView.widthAnchor.constraint(equalToConstant: view.bounds.size.width),
             tableView.heightAnchor.constraint(equalToConstant: view.bounds.height - 150),

@@ -21,7 +21,6 @@ class SecondProductCell: UITableViewCell {
         let lbl = UILabel()
         lbl.textColor = .black
         lbl.font = .systemFont(ofSize: 20)
-        lbl.frame = CGRect(x: 70, y: 0, width: 120, height: 50)
         lbl.textAlignment = .left
         lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
@@ -32,7 +31,6 @@ class SecondProductCell: UITableViewCell {
         let lbl = UILabel()
         lbl.textColor = .gray
         lbl.font = .systemFont(ofSize: 16)
-        lbl.frame = CGRect(x: 320, y: 10, width: 90, height: 50)
         lbl.textAlignment = .left
         lbl.numberOfLines = 0
         lbl.translatesAutoresizingMaskIntoConstraints = false
@@ -42,7 +40,6 @@ class SecondProductCell: UITableViewCell {
     private let productImage : UIImageView = {
         let imgView = UIImageView(image: UIImage(named: "bch"))
         imgView.contentMode = .scaleAspectFit
-        imgView.frame = CGRect(x: 10, y: 5, width: 50, height: 50)
         imgView.clipsToBounds = true
         imgView.translatesAutoresizingMaskIntoConstraints = false
         return imgView
@@ -51,7 +48,6 @@ class SecondProductCell: UITableViewCell {
     private let productPriceLabel : UILabel = {
         let lbl = UILabel()
         lbl.textColor = .black
-        lbl.frame = CGRect(x: 350, y: -10, width: 90, height: 50)
         lbl.font = .boldSystemFont(ofSize: 16)
         lbl.textAlignment = .left
         lbl.translatesAutoresizingMaskIntoConstraints = false
