@@ -115,20 +115,27 @@ class FirstHomeViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func setUpConstraints() {
-        NSLayoutConstraint.activate([
-            mainLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
-            mainLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5),
-            
-            tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 150),
-            tableView.widthAnchor.constraint(equalToConstant: view.bounds.size.width),
-            tableView.heightAnchor.constraint(equalToConstant: view.bounds.height - 150),
-            
-            gearButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 90),
-            gearButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -60),
-            
-            moreButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 120),
-            moreButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30)
-        ])
+        
+        mainLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(100)
+            make.left.equalToSuperview().offset(5)
+        }
+        
+        tableView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(150)
+            make.width.equalTo(view.bounds.size.width)
+            make.height.equalTo(view.bounds.height - 150)
+        }
+        
+        gearButton.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(90)
+            make.right.equalToSuperview().inset(60)
+        }
+        
+        moreButton.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(120)
+            make.right.equalToSuperview().inset(30)
+        }
     }
         
 }

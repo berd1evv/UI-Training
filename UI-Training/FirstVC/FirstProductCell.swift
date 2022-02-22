@@ -76,29 +76,39 @@ class FirstProductCell : UITableViewCell {
         addSubview(productDollarsDescription)
         addSubview(productToDollarsLabel)
         
-        NSLayoutConstraint.activate([
-            productImage.centerYAnchor.constraint(equalTo: centerYAnchor),
-            productImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
-            productImage.heightAnchor.constraint(equalToConstant: 70),
-            productImage.widthAnchor.constraint(equalToConstant: 70),
-            
-            productNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10),
-            productNameLabel.leadingAnchor.constraint(equalTo: productImage.trailingAnchor, constant: 15),
-            
-            productToDollarsLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10),
-            productToDollarsLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
-            
-            productDollarsDescription.topAnchor.constraint(equalTo: topAnchor, constant: 30),
-            productDollarsDescription.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
-            
-            productDescriptionLabel.topAnchor.constraint(equalTo: productNameLabel.bottomAnchor, constant: 5),
-            productDescriptionLabel.leadingAnchor.constraint(equalTo: productImage.trailingAnchor, constant: 17)
-        ])
-        
-        
+        setUpConstraints()
     }
  
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setUpConstraints() {
+        productImage.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.left.equalToSuperview().offset(10)
+            make.height.equalTo(70)
+            make.width.equalTo(70)
+        }
+        
+        productNameLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(10)
+            make.left.equalTo(productImage).offset(80)
+        }
+        
+        productToDollarsLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(10)
+            make.right.equalToSuperview().inset(10)
+        }
+        
+        productDollarsDescription.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(30)
+            make.right.equalToSuperview().inset(10)
+        }
+        
+        productDescriptionLabel.snp.makeConstraints { make in
+            make.top.equalTo(productNameLabel).inset(25)
+            make.left.equalTo(productImage).offset(80)
+        }
     }
 }

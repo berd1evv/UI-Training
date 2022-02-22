@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class SecondHomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -133,10 +134,10 @@ class SecondHomeViewController: UIViewController, UITableViewDelegate, UITableVi
         let footerView = UIView()
         footerView.addSubview(seeMoreButton)
 
-        NSLayoutConstraint.activate([
-            footerView.widthAnchor.constraint(equalToConstant: view.frame.size.width),
-            seeMoreButton.centerXAnchor.constraint(equalTo: footerView.centerXAnchor),
-        ])
+        seeMoreButton.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+        }
+
         return footerView
     }
 
@@ -144,28 +145,38 @@ class SecondHomeViewController: UIViewController, UITableViewDelegate, UITableVi
         return 100
     }
     
-    
     func setUpConstraints() {
-        NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 230),
-            tableView.widthAnchor.constraint(equalToConstant: view.bounds.size.width),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 100),
-            
-            balanceLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            balanceLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 60),
-            
-            moneyLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            moneyLabel.topAnchor.constraint(equalTo: balanceLabel.bottomAnchor, constant: 15),
-            
-            monthLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            monthLabel.topAnchor.constraint(equalTo: moneyLabel.bottomAnchor, constant: 30),
-            
-            leftArrowButton.trailingAnchor.constraint(equalTo: monthLabel.leadingAnchor, constant: -60),
-            leftArrowButton.topAnchor.constraint(equalTo: moneyLabel.bottomAnchor, constant: 32),
-            
-            rightArrowButton.leadingAnchor.constraint(equalTo: monthLabel.trailingAnchor, constant: 60),
-            rightArrowButton.topAnchor.constraint(equalTo: moneyLabel.bottomAnchor, constant: 32),
-        ])
+        
+        balanceLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalToSuperview().offset(60)
+        }
+        
+        moneyLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(balanceLabel).offset(25)
+        }
+        
+        monthLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(moneyLabel).offset(75)
+        }
+        
+        leftArrowButton.snp.makeConstraints { make in
+            make.left.equalTo(moneyLabel).offset(-40)
+            make.top.equalTo(moneyLabel).offset(77)
+        }
+        
+        rightArrowButton.snp.makeConstraints { make in
+            make.right.equalTo(moneyLabel).offset(40)
+            make.top.equalTo(moneyLabel).offset(77)
+        }
+        
+        tableView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(230)
+            make.width.equalTo(view.bounds.size.width)
+            make.bottom.equalToSuperview().offset(100)
+        }
     }
     
     

@@ -61,21 +61,27 @@ class SecondProductCell: UITableViewCell {
         addSubview(productDescription)
         addSubview(productPriceLabel)
         
-        NSLayoutConstraint.activate([
-            productImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5),
-            productImage.centerYAnchor.constraint(equalTo: centerYAnchor),
-            productImage.widthAnchor.constraint(equalToConstant: 50),
-            productImage.heightAnchor.constraint(equalToConstant: 50),
-            
-            productNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 20),
-            productNameLabel.leadingAnchor.constraint(equalTo: productImage.trailingAnchor, constant: 10),
-            
-            productPriceLabel.topAnchor.constraint(equalTo: topAnchor, constant: 15),
-            productPriceLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            
-            productDescription.topAnchor.constraint(equalTo: productPriceLabel.bottomAnchor),
-            productDescription.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)
-        ])
+        productImage.snp.makeConstraints { make in
+            make.left.equalToSuperview().offset(15)
+            make.centerY.equalToSuperview()
+            make.width.equalTo(50)
+            make.height.equalTo(50)
+        }
+        
+        productNameLabel.snp.makeConstraints { make in
+            make.left.equalTo(productImage).offset(60)
+            make.top.equalToSuperview().offset(15)
+        }
+        
+        productPriceLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(15)
+            make.right.equalToSuperview().offset(-20)
+        }
+        
+        productDescription.snp.makeConstraints { make in
+            make.top.equalTo(productPriceLabel).offset(20)
+            make.right.equalToSuperview().offset(-20)
+        }
     }
     required init?(coder: NSCoder) {
             fatalError("init(coder:) has not been implemented")
